@@ -17,9 +17,11 @@ import 'screens/orders/order_tracking_screen.dart';
 import 'screens/orders/orders_screen.dart';
 import 'utils/app_constants.dart';
 import 'utils/app_theme.dart';
+import 'utils/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  configureAppUrlStrategy();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final CustomerProvider customerProvider = CustomerProvider(prefs);
   final OrderProvider orderProvider = OrderProvider(prefs);
