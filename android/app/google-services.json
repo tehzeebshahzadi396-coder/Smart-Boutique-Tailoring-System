@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "278864033113",
+    "project_id": "boutique-tailoring",
+    "storage_bucket": "boutique-tailoring.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278864033113:android:a53f5b7f71b36ae0a5c848",
+        "android_client_info": {
+          "package_name": "com.smartboutique.smart_boutique"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqdRAGjBW1ssNZD_yrMyRVG1vcjcCGeyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

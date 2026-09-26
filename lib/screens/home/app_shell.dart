@@ -7,6 +7,7 @@ import '../calculator/fabric_calculator_screen.dart';
 import '../dashboard/dashboard_screen.dart';
 import '../measurements/customer_search_screen.dart';
 import '../orders/orders_screen.dart';
+import '../ai/ai_recommendation_screen.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key});
@@ -27,6 +28,7 @@ class _AppShellState extends State<AppShell> {
       const CustomerSearchScreen(embedded: true),
       const FabricCalculatorScreen(embedded: true),
       const OrdersScreen(embedded: true),
+      AIRecommendationScreen(),
     ];
 
     return Scaffold(
@@ -41,7 +43,9 @@ class _AppShellState extends State<AppShell> {
                 final customerProvider = context.read<CustomerProvider>();
                 final orderProvider = context.read<OrderProvider>();
                 await customerProvider.seedSampleCustomers();
-                await orderProvider.seedSampleOrders(customerProvider.customers);
+                await orderProvider.seedSampleOrders(
+                  customerProvider.customers,
+                );
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -132,6 +136,11 @@ class _AppShellState extends State<AppShell> {
             selectedIcon: Icon(Icons.receipt_long),
             label: 'Orders',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.auto_awesome_outlined),
+            selectedIcon: Icon(Icons.auto_awesome),
+            label: 'AI Stylist',
+          ),
         ],
       ),
     );
@@ -145,6 +154,8 @@ class _AppShellState extends State<AppShell> {
         return 'Fabric Calculator';
       case 3:
         return 'Orders';
+      case 4:
+        return 'AI Stylist';
       default:
         return 'Dashboard';
     }

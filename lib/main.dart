@@ -1,3 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
+
+import 'firebase_options.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,6 +25,7 @@ import 'utils/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   configureAppUrlStrategy();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final CustomerProvider customerProvider = CustomerProvider(prefs);
@@ -56,7 +61,9 @@ class SmartBoutiqueApp extends StatelessWidget {
           case AppShell.routeName:
             return MaterialPageRoute(builder: (_) => const AppShell());
           case CustomerSearchScreen.routeName:
-            return MaterialPageRoute(builder: (_) => const CustomerSearchScreen());
+            return MaterialPageRoute(
+              builder: (_) => const CustomerSearchScreen(),
+            );
           case MeasurementFormScreen.routeName:
             return MaterialPageRoute(
               builder: (_) => MeasurementFormScreen(
@@ -80,8 +87,8 @@ class SmartBoutiqueApp extends StatelessWidget {
             final Customer? customer = args is Customer
                 ? args
                 : args is String
-                    ? context.read<CustomerProvider>().findById(args)
-                    : null;
+                ? context.read<CustomerProvider>().findById(args)
+                : null;
             return MaterialPageRoute(
               builder: (_) => customer == null
                   ? const Scaffold(
@@ -91,21 +98,18 @@ class SmartBoutiqueApp extends StatelessWidget {
             );
           case OrderTrackingScreen.routeName:
             return MaterialPageRoute(
-              builder: (_) => OrderTrackingScreen(
-                orderId: settings.arguments as String,
-              ),
+              builder: (_) =>
+                  OrderTrackingScreen(orderId: settings.arguments as String),
             );
           case BillingScreen.routeName:
             return MaterialPageRoute(
-              builder: (_) => BillingScreen(
-                orderId: settings.arguments as String?,
-              ),
+              builder: (_) =>
+                  BillingScreen(orderId: settings.arguments as String?),
             );
           case InvoiceScreen.routeName:
             return MaterialPageRoute(
-              builder: (_) => InvoiceScreen(
-                orderId: settings.arguments as String,
-              ),
+              builder: (_) =>
+                  InvoiceScreen(orderId: settings.arguments as String),
             );
           default:
             return MaterialPageRoute(builder: (_) => const AppShell());

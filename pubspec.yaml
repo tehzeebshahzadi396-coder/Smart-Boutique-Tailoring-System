@@ -39,6 +39,9 @@ dependencies:
   provider: ^6.1.5
   shared_preferences: ^2.5.3
   intl: ^0.20.2
+  firebase_core: ^4.15.0
+  cloud_firestore: ^6.10.0
+  google_generative_ai: ^0.4.7
 
 dev_dependencies:
   flutter_test:
