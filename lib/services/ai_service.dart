@@ -2,7 +2,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 
 class AIService {
   static const String apiKey =
-      'AQ.Ab8RN6JrH-YTsUzIMVt-RjqhCtyB5vsmlsumTunU9jkW-Es4mw';
+      'AQ.Ab8RN6JK9ADF2nlT9QtoYRDgRFGoSxMotmsHLJ-v8QpYq1OM_w';
 
   static Future<String> getStyleRecommendation(String promptDetails) async {
     try {
