@@ -6,7 +6,8 @@ class AIService {
 
   static Future<String> getStyleRecommendation(String promptDetails) async {
     try {
-      final model = GenerativeModel(model: 'gemini-1.5-flash', apiKey: apiKey);
+      // lib/services/ai_service.dart
+      final model = GenerativeModel(model: 'gemini-3.8-flash', apiKey: apiKey);
 
       final prompt =
           'As an expert boutique fashion designer, provide styling and tailoring advice for: $promptDetails';

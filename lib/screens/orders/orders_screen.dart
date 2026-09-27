@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_boutique/services/whatsapp_service.dart';
 
 import '../../models/customer.dart';
 import '../../models/order.dart';
@@ -10,12 +11,10 @@ import '../../widgets/order_card.dart';
 import '../measurements/measurement_form_screen.dart';
 import 'create_order_screen.dart';
 import 'order_tracking_screen.dart';
+import '../../services/whatsapp_service.dart';
 
 class OrdersScreen extends StatelessWidget {
-  const OrdersScreen({
-    super.key,
-    this.embedded = false,
-  });
+  const OrdersScreen({super.key, this.embedded = false});
 
   static const String routeName = '/orders';
 
@@ -64,7 +63,10 @@ class OrdersScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 8,
+                  ),
                   child: Text(
                     'Select Customer for Order',
                     style: Theme.of(context).textTheme.titleLarge,
@@ -75,7 +77,8 @@ class OrdersScreen extends StatelessWidget {
                     controller: scrollController,
                     itemCount: customerProvider.customers.length,
                     itemBuilder: (context, index) {
-                      final Customer customer = customerProvider.customers[index];
+                      final Customer customer =
+                          customerProvider.customers[index];
                       return ListTile(
                         leading: CircleAvatar(
                           child: Text(
@@ -97,10 +100,8 @@ class OrdersScreen extends StatelessWidget {
     );
 
     if (selected != null && context.mounted) {
-      Navigator.of(context).pushNamed(
-        CreateOrderScreen.routeName,
-        arguments: selected,
-      );
+      Navigator.of(context)
+          .pushNamed(CreateOrderScreen.routeName, arguments: selected);
     }
   }
 
@@ -176,7 +177,7 @@ class _OrdersBody extends StatelessWidget {
       return const Center(child: CircularProgressIndicator());
     }
     if (provider.errorMessage != null && provider.orders.isEmpty) {
-      return EmptyState(
+      return const EmptyState(
         title: 'Unable to load orders.',
         message: 'Please try again after restarting the app.',
         icon: Icons.error_outline,
@@ -199,17 +200,40 @@ class _OrdersBody extends StatelessWidget {
     return ListView.separated(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
       itemCount: provider.filteredOrders.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 8),
+      separatorBuilder: (context, index) => const SizedBox(height: 12),
       itemBuilder: (context, index) {
         final Order order = provider.filteredOrders[index];
-        return OrderCard(
-          order: order,
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              OrderTrackingScreen.routeName,
-              arguments: order.id,
-            );
-          },
+        return Column(
+          children: [
+            OrderCard(
+              order: order,
+              onTap: () {
+                Navigator.of(
+                  context,
+                ).pushNamed(OrderTrackingScreen.routeName, arguments: order.id);
+              },
+            ),
+            const SizedBox(height: 6),
+            // Image me bataya gaya WhatsApp Button[cite: 1]
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF25D366),
+                  foregroundColor: Colors.white,
+                ),
+                icon: const Icon(Icons.chat),
+                label: const Text('Send Bill via WhatsApp'),
+                onPressed: () {
+                  WhatsAppService.sendMessage(
+                    phoneNumber: order.phone, // Apne model ke field name ke hisab se pass karein (e.g. order.customerPhone ya order.phone)
+                    message:
+                        "Hello! Aapka order #${order.id} receive ho gaya hai.",
+                  );
+                },
+              ),
+            ),
+          ],
         );
       },
     );
