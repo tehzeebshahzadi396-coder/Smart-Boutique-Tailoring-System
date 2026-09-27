@@ -1,12 +1,12 @@
 {
-    "name": "smart_boutique",
-    "short_name": "smart_boutique",
+    "name": "Smart Boutique & Tailoring System",
+    "short_name": "Smart Boutique",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#4E342E",
+    "theme_color": "#4E342E",
+    "description": "Boutique and tailoring management for customers, measurements, orders, and billing.",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {

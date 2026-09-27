@@ -46,5 +46,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Android local machine-specific settings
+/android/local.properties
+/android/.gradle/
+
 # Widget Preview related
 .widget_preview/

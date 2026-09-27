@@ -3,8 +3,12 @@
   "framework": null,
   "buildCommand": "bash vercel_build.sh",
   "outputDirectory": "build/web",
-  "cleanUrls": false,
+  "cleanUrls": true,
   "rewrites": [
+    {
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
@@ -38,7 +42,7 @@
       ]
     },
     {
-      "source": "/(index.html|flutter_service_worker.js|version.json)",
+      "source": "/(index.html|flutter_service_worker.js|version.json|flutter_bootstrap.js|main.dart.js)",
       "headers": [
         {
           "key": "Cache-Control",

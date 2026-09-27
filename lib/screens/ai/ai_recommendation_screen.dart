@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../services/ai_service.dart';
+import '../../services/ai_service.dart';
 
 class AIRecommendationScreen extends StatefulWidget {
-  const AIRecommendationScreen({Key? key}) : super(key: key);
+  const AIRecommendationScreen({super.key});
 
   @override
   State<AIRecommendationScreen> createState() => _AIRecommendationScreenState();
