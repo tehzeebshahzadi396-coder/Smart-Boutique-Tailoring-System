@@ -28,6 +28,7 @@ flutter config --enable-web --no-analytics
 echo "Installing project dependencies..."
 flutter pub get
 
+echo "API_KEY=$API_KEY" > .env
 echo "Building Flutter Web for Release..."
 flutter build web --release --web-renderer canvaskit
 
