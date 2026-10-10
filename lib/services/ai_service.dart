@@ -1,8 +1,9 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class AIService {
-  static const String apiKey =
-      'AQ.Ab8RN6JK9ADF2nlT9QtoYRDgRFGoSxMotmsHLJ-v8QpYq1OM_w';
+  static final String apiKey = dotenv.env['API_KEY'] ?? '';
+      
 
   static Future<String> getStyleRecommendation(String promptDetails) async {
     try {
