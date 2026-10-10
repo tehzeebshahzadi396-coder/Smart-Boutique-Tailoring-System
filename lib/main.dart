@@ -26,7 +26,7 @@ import 'utils/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(filename: ".env");
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   configureAppUrlStrategy();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
