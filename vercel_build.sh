@@ -1,4 +1,4 @@
-íí#!/bin/bash
+#!/bin/bash
 set -e
 
 echo "=== Vercel Flutter Web Build Started ==="
@@ -28,9 +28,12 @@ flutter config --enable-web --no-analytics
 echo "Installing project dependencies..."
 flutter pub get
 
-echo "API_KEY=$API_KEY" > .env
+# NOTE: GEMINI_API_KEY is NOT passed to the Flutter build.
+# It lives exclusively in Vercel server-side environment variables
+# and is used only by the api/recommend.js serverless function.
+
 echo "Building Flutter Web for Release..."
-flutter build web --release --web-renderer canvaskit
+flutter build web --release
 
 echo "=== Build Contents ==="
 ls -la build/web/

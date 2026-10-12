@@ -52,4 +52,12 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Environment / secrets — NEVER commit these
 .env
+.env.local
+.env.production
+.env.*.local
+
+# Build output — excluded because compiled JS embeds Flutter assets (incl. .env)
+build/

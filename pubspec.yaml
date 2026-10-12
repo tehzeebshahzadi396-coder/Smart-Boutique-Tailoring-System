@@ -41,9 +41,8 @@ dependencies:
   intl: ^0.20.2
   firebase_core: ^4.15.0
   cloud_firestore: ^6.10.0
-  google_generative_ai: ^0.4.7
+  http: ^1.2.2
   url_launcher: ^6.3.2
-  flutter_dotenv: ^6.0.1
 
 dev_dependencies:
   flutter_test:
@@ -66,8 +65,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-    - .env
+  # No .env asset — secrets are injected at build time via --dart-define
 
   # To add assets to your application, add an assets section, like this:
   # assets:

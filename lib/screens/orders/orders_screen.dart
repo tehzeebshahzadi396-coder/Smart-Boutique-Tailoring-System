@@ -11,7 +11,6 @@ import '../../widgets/order_card.dart';
 import '../measurements/measurement_form_screen.dart';
 import 'create_order_screen.dart';
 import 'order_tracking_screen.dart';
-import '../../services/whatsapp_service.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key, this.embedded = false});

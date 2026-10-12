@@ -1,4 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
@@ -26,7 +25,7 @@ import 'utils/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  // No dotenv.load() — API key is injected at build time via --dart-define.
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   configureAppUrlStrategy();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
